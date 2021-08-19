@@ -81,12 +81,29 @@ namespace TSOps.Services
         {
             PIServer piServer = PIServers.GetPIServers().DefaultPIServer;
 
-            if (findPiPoint(newpipoint)== null) // checking whether PIPoint already exists or not
+            if (findPiPoint(newpipoint)== null) // checking whether PIPoint already exists or not.
             {
                 piServer.CreatePIPoint(newpipoint);
                 return true;
             }
             else { return false; }
+        }
+
+        public bool CheckingConnectionToPI() 
+        {
+            PIServer piServer = PIServers.GetPIServers().DefaultPIServer;
+            
+            try
+            {
+                piServer.Connect();
+                piServer.Disconnect();
+                return true;               
+            }
+            catch
+            {
+                return false;
+            };
+            
         }
     }
 }

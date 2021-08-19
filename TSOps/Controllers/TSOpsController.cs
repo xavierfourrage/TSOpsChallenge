@@ -24,16 +24,28 @@ namespace TSOps.Controllers
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
             tag.newtag = tagn.newtag;
-            bool created = pipoint.CreatePIPoint(tagn.newtag); // this creates the pipoint AND returns true, else false if the tag already exists
+            
 
-            if (!created)
+            if (tagn.newtag==null)
             {
-                ViewBag.Message = tagn.newtag + " already exists, but you can still update and check its snapshot";
+                ViewBag.Message = "Tagname cannot be null";
             }
-
-            else
+            else if (!pipoint.CheckingConnectionToPI())
             {
-                ViewBag.Message = tagn.newtag + " was created successfully";
+                ViewBag.Message = "Could not connect to your default PI DA";
+            }
+            else // if we are able to connect to Default PI DA
+            {
+                bool created = pipoint.CreatePIPoint(tagn.newtag); // this creates the pipoint AND returns true, else false if the tag already exists.
+                if (!created)
+                {
+                    ViewBag.Message = tagn.newtag + " already exists, but you can still update and check its snapshot";
+                }
+
+                else
+                {
+                    ViewBag.Message = tagn.newtag + " was created successfully";
+                }
             }
 
             return View("Index", tag);

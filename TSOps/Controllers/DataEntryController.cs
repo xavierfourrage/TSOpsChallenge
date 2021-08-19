@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using TSOps.Models;
 using TSOps.Services;
 
+// THIS CONTROLLER CAN BE IGNORED
+// IT WAS CREATED FOR TESTING PURPOSES
+
 namespace TSOps.Controllers
 {
     public class DataEntryController : Controller
