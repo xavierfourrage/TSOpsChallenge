@@ -36,7 +36,7 @@ namespace TSOps.Services
             
             else // if PIPoint is null, return NULL
             {            
-                return "you must enter a valid tagname";
+                return "Either the tagname you entered is unknown or the connection to your default PIDA could not be established";
             }
             
         }
