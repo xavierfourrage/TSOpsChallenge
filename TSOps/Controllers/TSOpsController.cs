@@ -28,7 +28,7 @@ namespace TSOps.Controllers
 
             if (!created)
             {
-                ViewBag.Message = tagn.newtag + " already exists";
+                ViewBag.Message = tagn.newtag + " already exists, but you can still update and check its snapshot";
             }
 
             else
@@ -45,7 +45,7 @@ namespace TSOps.Controllers
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
    
-            if (tagn.newtag!=null && pipoint.findPiPoint(tagn.newtag)==null) // checking whether newtag is empty and whether the tagname already exists
+            if (tagn.newtag!=null) // checking whether newtag is empty and whether the tagname already exists
             {
                 tag.snapshot = tagn.snapshot;
                 pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.newtag), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
@@ -71,7 +71,7 @@ namespace TSOps.Controllers
                 tag.tagname = tagn.tagname;
                 tag.snapshot = afval.Value.ToString();
 
-                ViewBag.Message3 = tag.snapshot + " ,timestamp: " + afval.Timestamp;
+                ViewBag.Message3 = "Value: "+tag.snapshot + " ,timestamp: " + afval.Timestamp;
             }
 
             else
