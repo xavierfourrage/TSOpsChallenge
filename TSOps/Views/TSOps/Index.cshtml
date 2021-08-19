@@ -1,0 +1,30 @@
+﻿
+@using TSOps.Models
+@model TagModel
+
+@using (Html.BeginForm("GetTagInfo", "TSOps", FormMethod.Post))
+{
+    <span>Enter an existing tagname: </span> @Html.TextBoxFor(m => m.tagname)
+    <br />
+    
+    <span> (Optional) Enter a new snapshot for the specified tag: </span>@Html.TextBoxFor(m => m.snapshot)
+    <br />
+    
+    <input id="Submit" type="submit" value="submit" />
+}
+
+<strong>The entered tag name: </strong> @Html.DisplayFor(m => m.tagname)
+<br />
+<strong>This PIPoint's snapshot: </strong> @Html.DisplayFor(m => m.snapshot)
+<br />
+
+@using (Html.BeginForm("CreateNewTag", "TSOps", FormMethod.Post))
+{
+    <span>Create a new tag. New tag name: </span> @Html.TextBoxFor(m => m.newtag)
+    <br />
+
+    <input id="Submit" type="submit" value="Create" />
+}
+
+<strong>New PI Point created: </strong> @ViewBag.Message
+<br />

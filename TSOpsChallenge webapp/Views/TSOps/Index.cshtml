@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model TSOpsChallenge_webapp.Models.PIPointModel
+
+<h1>Create PI Point. Enter the new tagname:</h1>
+<textarea id="tagname" class="form-control"></textarea> 
+<button type="button" id="createPIPoint" class="btn btn-light btn-outline-primary Update" href="javascript:;">Create PI Point</button>
+
+
+<h1>Send Snapshot value to PI</h1>
+<textarea class="form-control"></textarea> 
+<button type="button" class="btn btn-light btn-outline-primary Update" href="javascript:;">Send snapshot</button>
+
+
+<h1>Get the snapshot value of a submitted PIPoint</h1>
+<textarea class="form-control"></textarea> 
+<button type="button" class="btn btn-light btn-outline-primary Update" href="javascript:;">GetSnapshot</button>
+
+
+
+<script type="text/javascript">
+
+        $("body").on("click", "#createPIPoint .Update", function () {
+           
+
+            var tag = find("textarea").val();
+            var pipoint={};
+            pipoint.tagname = tag;
+            
+            $.ajax({
+                type: "POST",
+                url: "/TSOps/PostAction",
+                data: JSON.stringify(tscase),
+                contentType: "application/json",
+                dataType: "json"
+            }).done(function (response) {
+                console.log(response);
+            }).fail(function (response) {
+                console.log('Error: ' + response);
+            });
+
+
+        });
+
+</script>
