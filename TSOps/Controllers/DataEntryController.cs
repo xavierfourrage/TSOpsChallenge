@@ -24,7 +24,7 @@ namespace TSOps.Controllers
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
 
-            if (tagn.snapshot == null || tagn.snapshot.Length == 0)
+            if (tagn.tagname != null)
             {
                
                 AFValue afval = pipoint.Snapshot(pipoint.findPiPoint(tagn.tagname));
@@ -34,12 +34,27 @@ namespace TSOps.Controllers
             }
 
             else
-            {
-                tag.tagname = tagn.tagname;
-                tag.snapshot = tagn.snapshot;
-                pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.tagname), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
-                ViewBag.Message3 = "Entered value is now set as the new snapshot";
+            {             
+                ViewBag.Message3 = "Invalid tag name";
             }
+
+            return View("Index", tag);
+        }
+
+        [HttpPost]
+        public ActionResult SendData(TagModel tagn)
+        {
+            PIPointDataService pipoint = new PIPointDataService();
+            TagModel tag = new TagModel();
+
+            tag.snapshot = tagn.snapshot;
+            if (tagn.tagname != null)
+            {
+                pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.tagname), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
+
+                ViewBag.Message2 = "Value was sent successfully";
+            }
+            else { ViewBag.Message2 = "You need to enter a tagname first"; }
 
             return View("Index", tag);
         }

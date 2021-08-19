@@ -24,7 +24,7 @@ namespace TSOps.Controllers
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
             tag.newtag = tagn.newtag;
-            bool created = pipoint.CreatePIPoint(tagn.newtag);
+            bool created = pipoint.CreatePIPoint(tagn.newtag); // this creates the pipoint AND returns true, else false if the tag already exists
 
             if (!created)
             {
@@ -44,16 +44,19 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-
-            tag.snapshot = tagn.snapshot;
-            if (tagn.newtag!=null)
+   
+            if (tagn.newtag!=null && pipoint.findPiPoint(tagn.newtag)==null) // checking whether newtag is empty and whether the tagname already exists
             {
+                tag.snapshot = tagn.snapshot;
                 pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.newtag), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
 
                 ViewBag.Message2 = "Value was sent successfully";
             }
-            else { ViewBag.Message2 = "You need to create a tag first"; }
-           
+            else 
+            { ViewBag.Message2 = "You need to create a new tag first";
+                tag.snapshot = null;
+                tag.newtag = null;
+            }          
             return View("Index", tag);
         }
 

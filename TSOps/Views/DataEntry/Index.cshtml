@@ -5,19 +5,24 @@
 @using (Html.BeginForm("GetTagInfo", "DataEntry", FormMethod.Post))
 {
     <span>Enter an existing tagname: </span> @Html.TextBoxFor(m => m.tagname)
-    <br />
 
-    <span> (Optional) Send a new snapshot for the specified tag: </span>@Html.TextBoxFor(m => m.snapshot)
-
-    <input id="Submit" type="submit" value="submit" />
+    <input id="Submit" type="submit" value="Read Snapshot Value" />
 }
 
 <p>@ViewBag.Message3</p>
 
+@using (Html.BeginForm("SendData", "DataEntry", FormMethod.Post))
+{
+    <span> Write a new snapshot for the specified tag: </span>@Html.TextBoxFor(m => m.snapshot)
+
+    @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
+    <input id="Submit" type="submit" value="Send Value" />
+}
+<p>@ViewBag.Message2</p>
+
 @using (Html.BeginForm("CreateNewTag", "DataEntry", FormMethod.Post))
 {
     <span>Create a new tag. New tag name: </span> @Html.TextBoxFor(m => m.newtag)
-    <br />
 
     <input id="Submit" type="submit" value="Create" />
 }
