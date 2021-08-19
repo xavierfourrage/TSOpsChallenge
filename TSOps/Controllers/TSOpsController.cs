@@ -37,7 +37,7 @@ namespace TSOps.Controllers
                 pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.tagname), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
             }
 
-            return View(tag);
+            return View("Index",tag);
         }
 
         [HttpPost]

@@ -20,7 +20,7 @@ namespace TSOps.Services
                 PIPoint myPIPoint = PIPoint.FindPIPoint(piServer, pipoint);
                 return myPIPoint;
             }
-            catch (Exception ex) // if PIPoint does not exisit, return NULL
+            catch (Exception ex) // if PIPoint does not exist, return NULL
             {
                 Console.WriteLine(ex.Message);
                 return null;
@@ -28,8 +28,17 @@ namespace TSOps.Services
         }
         public string SnapshotValue (PIPoint pipoint)
         {
-            string snapshot = pipoint.CurrentValue().ToString();
-            return snapshot;
+           if (pipoint!=null)
+            {
+                string snapshot = pipoint.CurrentValue().ToString();
+                return snapshot;
+            }
+            
+            else // if PIPoint is null, return NULL
+            {            
+                return "you must enter a valid tagname";
+            }
+            
         }
         public void SendSnapshotValue(PIPoint pipoint, string snap)
         {
