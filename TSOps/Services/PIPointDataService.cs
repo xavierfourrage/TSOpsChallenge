@@ -137,52 +137,57 @@ namespace TSOps.Services
         {
 
             bool succeed = false;
+            if (valueToConvert==null)
+            { return false; }
 
-            switch (typeToConvert.ToString().ToUpper())
+            else
             {
-                case "DOUBLE":
-                    double d;
-                    succeed = double.TryParse(valueToConvert.ToString(), out d);
-                    break;
-                case "FLOAT32":
-                    float f32;
-                    succeed = float.TryParse(valueToConvert.ToString(), out f32);
-                    break;
-                case "FLOAT64":
-                    float f64;
-                    succeed = float.TryParse(valueToConvert.ToString(), out f64);
-                    break;
-                case "DATETIME":
-                    DateTime dt;
-                    succeed = DateTime.TryParse(valueToConvert.ToString(), out dt);
-                    break;
-                case "INT16":
-                    Int16 i16;
-                    succeed = Int16.TryParse(valueToConvert.ToString(), out i16);
-                    break;
-                case "INT":
-                    Int32 i32;
-                    succeed = Int32.TryParse(valueToConvert.ToString(), out i32);
-                    break;
-                case "INT32":
-                    Int32 i322;
-                    succeed = Int32.TryParse(valueToConvert.ToString(), out i322);
-                    break;
-                case "INT64":
-                    Int64 i64;
-                    succeed = Int64.TryParse(valueToConvert.ToString(), out i64);
-                    break;
-                case "BOOLEAN":
-                    bool b;
-                    succeed = Boolean.TryParse(valueToConvert.ToString(), out b);
-                    break;
-                case "BOOL":
-                    bool b1;
-                    succeed = bool.TryParse(valueToConvert.ToString(), out b1);
-                    break;
-            }
+                switch (typeToConvert.ToString().ToUpper())
+                {
+                    case "DOUBLE":
+                        double d;
+                        succeed = double.TryParse(valueToConvert.ToString(), out d);
+                        break;
+                    case "FLOAT32":
+                        float f32;
+                        succeed = float.TryParse(valueToConvert.ToString(), out f32);
+                        break;
+                    case "FLOAT64":
+                        float f64;
+                        succeed = float.TryParse(valueToConvert.ToString(), out f64);
+                        break;
+                    case "DATETIME":
+                        DateTime dt;
+                        succeed = DateTime.TryParse(valueToConvert.ToString(), out dt);
+                        break;
+                    case "INT16":
+                        Int16 i16;
+                        succeed = Int16.TryParse(valueToConvert.ToString(), out i16);
+                        break;
+                    case "INT":
+                        Int32 i32;
+                        succeed = Int32.TryParse(valueToConvert.ToString(), out i32);
+                        break;
+                    case "INT32":
+                        Int32 i322;
+                        succeed = Int32.TryParse(valueToConvert.ToString(), out i322);
+                        break;
+                    case "INT64":
+                        Int64 i64;
+                        succeed = Int64.TryParse(valueToConvert.ToString(), out i64);
+                        break;
+                    case "BOOLEAN":
+                        bool b;
+                        succeed = Boolean.TryParse(valueToConvert.ToString(), out b);
+                        break;
+                    case "BOOL":
+                        bool b1;
+                        succeed = bool.TryParse(valueToConvert.ToString(), out b1);
+                        break;
+                }
 
-            return succeed;
+                return succeed;
+            }
         }
     }
 }
