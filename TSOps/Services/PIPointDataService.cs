@@ -144,6 +144,14 @@ namespace TSOps.Services
                     double d;
                     succeed = double.TryParse(valueToConvert.ToString(), out d);
                     break;
+                case "FLOAT32":
+                    float f32;
+                    succeed = float.TryParse(valueToConvert.ToString(), out f32);
+                    break;
+                case "FLOAT64":
+                    float f64;
+                    succeed = float.TryParse(valueToConvert.ToString(), out f64);
+                    break;
                 case "DATETIME":
                     DateTime dt;
                     succeed = DateTime.TryParse(valueToConvert.ToString(), out dt);
