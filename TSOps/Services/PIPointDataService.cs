@@ -68,13 +68,20 @@ namespace TSOps.Services
                 return null;
             }
         }
-        public void SendSnapshotValue(PIPoint pipoint, string snap)
+        public bool SendValue(PIPoint pipoint, string snap, AFTime aftime)
         {
-            AFValue myValue = new AFValue(snap);
-            AFTime aftime = new AFTime("*");
+            AFValue myValue = new AFValue(snap);            
             myValue.PIPoint = pipoint;
             myValue.Timestamp = aftime;
-            myValue.PIPoint.UpdateValue(myValue,AFUpdateOption.Insert);
+
+            // checking if the input value fits the point type
+            if (TryParseAll(pipoint.PointType, snap))
+            {
+                myValue.PIPoint.UpdateValue(myValue, AFUpdateOption.Insert);
+                return true;
+            }
+            else { return false; } // return false if input does not match PIPoint type
+            
         }
 
         public bool CreatePIPoint(string newpipoint)
@@ -88,7 +95,27 @@ namespace TSOps.Services
             }
             else { return false; }
         }
-
+        public AFTime ConvertToAFTime(string datetime)
+        {
+            AFTime aftime = new AFTime();
+            if (isAFTime(datetime))
+            {
+                bool isDate = AFTime.TryParse(datetime, out aftime);
+                return aftime;
+            }
+            return aftime;
+        }
+        static bool isAFTime(string stringtime)
+        {
+            bool isDate = new bool();
+            AFTime aftime = new AFTime();
+            if (string.IsNullOrEmpty(stringtime))
+            {
+                return false;
+            }
+            isDate = AFTime.TryParse(stringtime, out aftime);
+            return isDate;
+        }
         public bool CheckingConnectionToPI() 
         {
             PIServer piServer = PIServers.GetPIServers().DefaultPIServer;
@@ -104,6 +131,50 @@ namespace TSOps.Services
                 return false;
             };
             
+        }
+
+        public static bool TryParseAll(PIPointType typeToConvert, object valueToConvert)
+        {
+
+            bool succeed = false;
+
+            switch (typeToConvert.ToString().ToUpper())
+            {
+                case "DOUBLE":
+                    double d;
+                    succeed = double.TryParse(valueToConvert.ToString(), out d);
+                    break;
+                case "DATETIME":
+                    DateTime dt;
+                    succeed = DateTime.TryParse(valueToConvert.ToString(), out dt);
+                    break;
+                case "INT16":
+                    Int16 i16;
+                    succeed = Int16.TryParse(valueToConvert.ToString(), out i16);
+                    break;
+                case "INT":
+                    Int32 i32;
+                    succeed = Int32.TryParse(valueToConvert.ToString(), out i32);
+                    break;
+                case "INT32":
+                    Int32 i322;
+                    succeed = Int32.TryParse(valueToConvert.ToString(), out i322);
+                    break;
+                case "INT64":
+                    Int64 i64;
+                    succeed = Int64.TryParse(valueToConvert.ToString(), out i64);
+                    break;
+                case "BOOLEAN":
+                    bool b;
+                    succeed = Boolean.TryParse(valueToConvert.ToString(), out b);
+                    break;
+                case "BOOL":
+                    bool b1;
+                    succeed = bool.TryParse(valueToConvert.ToString(), out b1);
+                    break;
+            }
+
+            return succeed;
         }
     }
 }

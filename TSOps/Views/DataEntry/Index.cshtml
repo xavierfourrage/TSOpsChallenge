@@ -6,7 +6,7 @@
 {
     <span>Enter an existing tagname: </span> @Html.TextBoxFor(m => m.tagname)
 
-    <input id="Submit" type="submit" value="Read Snapshot Value" />
+    <input id="Submit" type="submit" value="Select tag and Read Snapshot" />
 }
 
 <p>@ViewBag.Message3</p>
@@ -20,12 +20,23 @@
 }
 <p>@ViewBag.Message2</p>
 
-@using (Html.BeginForm("CreateNewTag", "DataEntry", FormMethod.Post))
+
+
+@using (Html.BeginForm("SendArchivedData", "DataEntry", FormMethod.Post))
+{
+    <span> Write a new past Value: </span>@Html.TextBoxFor(m => m.archivedvalue)
+    <span> at timestamp (PI time format): </span>@Html.TextBoxFor(m => m.timestamp)
+
+    @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
+    <input id="Submit" type="submit" value="Send Value" />
+}
+<p>@ViewBag.Message4</p>
+
+@*@using (Html.BeginForm("CreateNewTag", "DataEntry", FormMethod.Post))
 {
     <span>Create a new tag. New tag name: </span> @Html.TextBoxFor(m => m.newtag)
 
     <input id="Submit" type="submit" value="Create" />
 }
 
-<p>@ViewBag.Message</p>
-
+<p>@ViewBag.Message</p>*@

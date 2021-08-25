@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TSOps.Models;
 using TSOps.Services;
 using OSIsoft.AF.Asset;
+using OSIsoft.AF.Time;
 
 namespace TSOps.Controllers
 {
@@ -56,13 +57,18 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-   
+            AFTime aftime = new AFTime("*");
+
             if (tagn.newtag!=null) // checking whether newtag is empty and whether the tagname already exists
             {
                 tag.snapshot = tagn.snapshot;
-                pipoint.SendSnapshotValue(pipoint.findPiPoint(tagn.newtag), tagn.snapshot); //this sends the snapshot value in the specified PI Point to the default PI server
-
-                ViewBag.Message2 = "Value was sent successfully";
+                bool valuesent = pipoint.SendValue(pipoint.findPiPoint(tagn.newtag), tagn.snapshot,aftime); //this sends the snapshot value in the specified PI Point to the default PI server
+                if (valuesent)
+                {
+                    ViewBag.Message2 = "Value was sent successfully";
+                }
+                else { ViewBag.Message2 = "Entered value does not match point type"; }
+                
             }
             else 
             { ViewBag.Message2 = "You need to create a new tag first";
