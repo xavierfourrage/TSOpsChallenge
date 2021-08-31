@@ -27,5 +27,60 @@ textarea {
 
     .body-content {
         padding: 0;
+        background-color:black;
     }
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#read_description {
+    margin-right: 10px;
+    background-color: grey;
+    border-radius: 25px;
+    border: thin;
+    max-width: 50%;
+    min-width: 30%;
+    height: 250px
+}
+
+#rename_point {
+    margin-left: 10px;
+    background-color: grey;
+    border-radius: 25px;
+    border: thin;
+    max-width: 50%;
+    min-width: 30%;
+}
+
+#text {
+    margin-right: 10%;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.defaultTextBox {
+    padding: 0;
+    height: 19px;
+    width: 50%;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: black;
+    font-size: 16px;
+}
+
+#Submit {
+    border-radius: 5px;
+    background-color: chocolate;
+    color: black
 }
