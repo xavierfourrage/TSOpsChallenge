@@ -13,5 +13,6 @@ namespace TSOps.Models
         public string archivedvalue { get; set; }
         public string newtag{ get; set; }
         public string timestamp { get; set; }
+        public string decription { get; set; }
     }
 }

@@ -2,42 +2,46 @@
 @using TSOps.Models
 @model TagModel
 
-<h1>Web API Example Tool</h1>
+<h2>Web API Example Tool</h2>
 <div id="container">
     <div id="read_description">
         <h2>Read Description</h2>
-        @using (Html.BeginForm("GetTagInfo", "DataEntry", FormMethod.Post))
+        @using (Html.BeginForm("ReadDescription", "tsops", FormMethod.Post))
         {
-            <span id="text">Tag name: </span>
-            <input type="text" class="defaultTextBox" />
-            @*@Html.TextBox("text box") *@
+    <div id="tagname">
+        <span id="text">Tag name: </span> @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
+    </div>         
             <br />
 
             <div class="buttontemplate"><input id="Submit" type="submit" value="Read" /></div>
         }
         <hr size="8" width="90%">
-        <span id="text">Status: </span> <br />
-        <span id="text">Value: </span>
+        <div id="ValueResult">
+            <div id="status"><span id="text">Status:</span><span id="status_result">@ViewBag.Message0</span></div>
+            <div id="value"><span id="text">Value:</span><span id="value_result">@ViewBag.Message1</span></div>
+        </div>
     </div>
 
     <div id="rename_point">
         <h2>Rename Point</h2>
-        @using (Html.BeginForm("GetTagInfo", "DataEntry", FormMethod.Post))
+        @using (Html.BeginForm("RenamePiPoint", "tsops", FormMethod.Post))
         {
-            <span id="text">Name: </span>
-            @*@Html.TextBox("text box")*@
-            <input type="text" class="defaultTextBox" />
-            <br />
-            <span id="text">New Name: </span>
-            @*@Html.TextBox("text box")*@
-            <input type="text" class="defaultTextBox" />
-
+    <div id="tagname">
+        <span id="text">Name: </span>
+       
+        @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
+        <br />
+        <span id="text">New Name: </span>
+       
+        @Html.TextBoxFor(m => m.newtag, new { @class = "defaultTextBox" })
+    </div>
             <br />
             <div class="buttontemplate"><input id="Submit" type="submit" value="Rename" /></div>
-            
         }
-        <hr size="8" width="90%" color="red">
-        <span id="text">Status: </span> <br />
-        <span id="text">Value: </span>
+        <hr size="8" width="90%">
+        <div id="ValueResult">
+           <div id="status"><span id="text">Status: </span></div> 
+           <div id="value"><span id="text">Value: </span></div>
+        </div>
     </div>
 </div>

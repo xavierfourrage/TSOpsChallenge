@@ -27,7 +27,7 @@ textarea {
 
     .body-content {
         padding: 0;
-        background-color:black;
+        background-color: #262626;
     }
 }
 
@@ -35,13 +35,15 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 30px;
 }
 
 #read_description {
     margin-right: 10px;
-    background-color: grey;
+    background-color: #404040;
     border-radius: 25px;
-    border: thin;
+    border: solid 2px;
+    border-color: #4b4b4b;
     max-width: 50%;
     min-width: 30%;
     height: 250px
@@ -49,9 +51,10 @@ textarea {
 
 #rename_point {
     margin-left: 10px;
-    background-color: grey;
+    background-color: #404040;
     border-radius: 25px;
-    border: thin;
+    border: solid 2px;
+    border-color: #4b4b4b;
     max-width: 50%;
     min-width: 30%;
 }
@@ -66,21 +69,63 @@ h1 {
     color: white;
 }
 
+h2 {
+    text-align: center;
+    color: white;
+}
+
 .defaultTextBox {
     padding: 0;
     height: 19px;
     width: 50%;
     position: relative;
-    left: 0;
     outline: none;
     border: 1px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: black;
+    border-color: #676363;
+    background-color: #262626;
     font-size: 16px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    color: white;
+    max-width: 50%;
+    max-height: 20px;
+    margin-right: 8%;
+}
+
+.buttontemplate {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 #Submit {
-    border-radius: 5px;
-    background-color: chocolate;
-    color: black
+    border-radius: 6px;
+    background-color: #afabab;
+    color: #3d3a3a;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#tagname {
+    text-align: right;
+    height: 30px;
+}
+
+#ValueResult {
+    text-align: right;
+    margin-right: 65%;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 1.5px solid #706c6c;
+}
+
+#value {
+    margin-top: 8px;
+}
+
+#status {
+    margin-bottom: 0px;
 }
