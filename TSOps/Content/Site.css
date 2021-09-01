@@ -62,6 +62,7 @@ textarea {
 #text {
     margin-right: 10%;
     color: white;
+    font-weight: 550;
 }
 
 h1 {
@@ -107,13 +108,13 @@ h2 {
 }
 
 #tagname {
-    text-align: right;
+    /* text-align: right; */
     height: 30px;
 }
 
 #ValueResult {
-    text-align: right;
-    margin-right: 65%;
+    /* text-align: right; */
+    /* margin-right: 65%; */
 }
 
 hr {
@@ -128,4 +129,15 @@ hr {
 
 #status {
     margin-bottom: 0px;
+}
+
+#value_result {
+    color: white;
+}
+
+#status_result {
+    color: white;
+}
+footer {
+    color: #afabab
 }
