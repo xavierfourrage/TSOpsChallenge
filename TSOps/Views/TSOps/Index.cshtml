@@ -9,7 +9,7 @@
         @using (Html.BeginForm("ReadDescription", "tsops", FormMethod.Post))
         {
     <div id="tagname">
-        <span id="text">Tag name: </span> @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
+        <span class="TextTagname" id="text">Tag name: </span> @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
     </div>         
             <br />
 
@@ -17,8 +17,8 @@
         }
         <hr size="8" width="90%">
         <div id="ValueResult">
-            <div id="status"><span id="text">Status:</span><span id="status_result">@ViewBag.Message0</span></div>
-            <div id="value"><span id="text">Value:</span><span id="value_result">@ViewBag.Message1</span></div>
+            <div id="status"><span class="TextStatus" id="text">Status:</span><span id="status_result">@ViewBag.Message0</span></div>
+            <div id="value"><span class="TextValue" id="text">Value:</span><span id="value_result">@ViewBag.Message1</span></div>
         </div>
     </div>
 
@@ -27,21 +27,21 @@
         @using (Html.BeginForm("RenamePiPoint", "tsops", FormMethod.Post))
         {
     <div id="tagname">
-        <span id="text">Name: </span>
+        <span class="TextName" id="text">Name: </span>
        
-        @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
+        @Html.TextBoxFor(m => m.oldtagname, new { @class = "defaultTextBox" })
         <br />
-        <span id="text">New Name: </span>
+        <span class="TextNewName" id="text">New Name: </span>
        
-        @Html.TextBoxFor(m => m.newtag, new { @class = "defaultTextBox" })
+        @Html.TextBoxFor(m => m.newtagname, new { @class = "defaultTextBox" })
     </div>
             <br />
             <div class="buttontemplate"><input id="Submit" type="submit" value="Rename" /></div>
         }
         <hr size="8" width="90%">
         <div id="ValueResult">
-           <div id="status"><span id="text">Status: </span></div> 
-           <div id="value"><span id="text">Value: </span></div>
+           <div id="status"><span class="TextStatus" id="text">Status: </span><span id="status_result">@ViewBag.Message2</span></div> 
+           <div id="value"><span class="TextValue" id="text">Value: </span><span id="value_result">@ViewBag.Message3</span></div>
         </div>
     </div>
 </div>

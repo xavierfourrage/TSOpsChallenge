@@ -11,8 +11,9 @@ namespace TSOps.Models
         public string tagname { get; set; }
         public string snapshot { get; set; }
         public string archivedvalue { get; set; }
-        public string newtag{ get; set; }
+        public string newtagname{ get; set; }
         public string timestamp { get; set; }
         public string decription { get; set; }
+        public string oldtagname { get; set; }
     }
 }

@@ -24,10 +24,10 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-            tag.newtag = tagn.newtag;
+            tag.newtagname = tagn.newtagname;
             
 
-            if (tagn.newtag==null)
+            if (tagn.newtagname==null)
             {
                 ViewBag.Message = "Tagname cannot be null";
             }
@@ -37,15 +37,15 @@ namespace TSOps.Controllers
             }
             else // if we are able to connect to Default PI DA
             {
-                bool created = pipoint.CreatePIPoint(tagn.newtag); // this creates the pipoint AND returns true, else false if the tag already exists.
+                bool created = pipoint.CreatePIPoint(tagn.newtagname); // this creates the pipoint AND returns true, else false if the tag already exists.
                 if (!created)
                 {
-                    ViewBag.Message = tagn.newtag + " already exists, but you can still update and check its snapshot";
+                    ViewBag.Message = tagn.newtagname + " already exists, but you can still update and check its snapshot";
                 }
 
                 else
                 {
-                    ViewBag.Message = tagn.newtag + " was created successfully";
+                    ViewBag.Message = tagn.newtagname + " was created successfully";
                 }
             }
 
@@ -59,10 +59,10 @@ namespace TSOps.Controllers
             TagModel tag = new TagModel();
             AFTime aftime = new AFTime("*");
 
-            if (tagn.newtag!=null) // checking whether newtag is empty and whether the tagname already exists
+            if (tagn.newtagname!=null) // checking whether newtag is empty and whether the tagname already exists
             {
                 tag.snapshot = tagn.snapshot;
-                bool valuesent = pipoint.SendValue(pipoint.findPiPoint(tagn.newtag), tagn.snapshot,aftime); //this sends the snapshot value in the specified PI Point to the default PI server
+                bool valuesent = pipoint.SendValue(pipoint.findPiPoint(tagn.newtagname), tagn.snapshot,aftime); //this sends the snapshot value in the specified PI Point to the default PI server
                 if (valuesent)
                 {
                     ViewBag.Message2 = "Value was sent successfully";
@@ -73,7 +73,7 @@ namespace TSOps.Controllers
             else 
             { ViewBag.Message2 = "You need to create a new tag first";
                 tag.snapshot = null;
-                tag.newtag = null;
+                tag.newtagname = null;
             }          
             return View("Index", tag);
         }
@@ -83,9 +83,9 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-            if (tagn.newtag != null)
+            if (tagn.newtagname != null)
             {
-                AFValue afval = pipoint.Snapshot(pipoint.findPiPoint(tagn.newtag));
+                AFValue afval = pipoint.Snapshot(pipoint.findPiPoint(tagn.newtagname));
                 tag.tagname = tagn.tagname;
                 tag.snapshot = afval.Value.ToString();
 

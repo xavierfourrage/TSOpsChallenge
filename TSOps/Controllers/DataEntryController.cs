@@ -103,17 +103,17 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-            tag.newtag = tagn.newtag;
-            bool created = pipoint.CreatePIPoint(tagn.newtag);
+            tag.newtagname = tagn.newtagname;
+            bool created = pipoint.CreatePIPoint(tagn.newtagname);
 
             if (!created)
             {
-                ViewBag.Message = tagn.newtag + " already exists";
+                ViewBag.Message = tagn.newtagname + " already exists";
             }
 
             else
             {
-                ViewBag.Message = tagn.newtag + " was created successfully";
+                ViewBag.Message = tagn.newtagname + " was created successfully";
             }
 
             return View("Index", tag);

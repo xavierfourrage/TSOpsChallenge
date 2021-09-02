@@ -36,6 +36,7 @@ textarea {
     flex-direction: row;
     justify-content: center;
     margin-top: 30px;
+    margin-bottom: 15%;
 }
 
 #read_description {
@@ -83,7 +84,7 @@ h2 {
     outline: none;
     border: 1px solid #cdcdcd;
     border-color: #676363;
-    background-color: #262626;
+    background-color: #3b3838;
     font-size: 16px;
     border-radius: 4px;
     margin-bottom: 8px;
@@ -138,6 +139,27 @@ hr {
 #status_result {
     color: white;
 }
+
+.TextTagname {
+    margin-left: 10px
+}
+
+.TextStatus {
+    margin-left: 30px
+}
+
+.TextValue {
+    margin-left: 35px
+}
+
+.TextName {
+    margin-left: 35px
+}
+
+.TextNewName {
+    margin-left: 2px
+}
+
 footer {
-    color: #afabab
+    color: #afabab;
 }
