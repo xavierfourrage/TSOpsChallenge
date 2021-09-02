@@ -22,24 +22,35 @@ namespace TSOps.Controllers
         {
             PIPointDataService pipoint = new PIPointDataService();
             TagModel tag = new TagModel();
-
-            PIPoint tagname = pipoint.findPiPoint(tagn.tagname);
             
 
-            if (tagn.tagname != null)
+            if (tagn.tagname == null)
             {
+                ViewBag.Message0 = "Bad";
+                ViewBag.Message1 = "Tagname cannot be null";
+            }
+
+            else if (!pipoint.CheckingConnectionToPI())
+            {
+                ViewBag.Message0 = "Bad";
+                ViewBag.Message1 = "Could not connect to your default PI DA";
+            }
+
+            else if (pipoint.findPiPoint(tagn.tagname) == null)
+            {
+                ViewBag.Message0 = "Bad";
+                ViewBag.Message1 = tagn.tagname+" does not exist";
+            }
+
+            else 
+            {
+                PIPoint tagname = pipoint.findPiPoint(tagn.tagname);
                 tagname.LoadAttributes(PICommonPointAttributes.Descriptor);
                 object drAttrValue;
                 drAttrValue = tagname.GetAttribute(PICommonPointAttributes.Descriptor);
                 ViewBag.Message0 = "Good";
                 ViewBag.Message1 = drAttrValue;
                 tagname.UnloadAllAttributes(PICommonPointAttributes.Descriptor);
-            }
-
-            else
-            {
-                ViewBag.Message0 = "Bad";
-                ViewBag.Message1 = "Could not get the description";
             }
 
             return View("Index", tag);
@@ -62,7 +73,7 @@ namespace TSOps.Controllers
             else if (tagn.newtagname== tagn.oldtagname)
             {
                 ViewBag.Message2 = "Bad";
-                ViewBag.Message3 = "Name and New Name must be different";
+                ViewBag.Message3 = "Name and NewName are equal";
             }
 
             else if (!pipoint.CheckingConnectionToPI())
@@ -74,7 +85,7 @@ namespace TSOps.Controllers
             else if (pipoint.findPiPoint(tagn.oldtagname)==null)
             {
                 ViewBag.Message2 = "Bad";
-                ViewBag.Message3 = "Tagname does not exist";
+                ViewBag.Message3 = tagn.oldtagname+" does not exist";
             }
 
             else // if we are able to connect to Default PI DA
