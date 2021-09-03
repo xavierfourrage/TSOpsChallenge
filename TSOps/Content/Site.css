@@ -126,6 +126,8 @@ hr {
 
 #value {
     margin-top: 8px;
+    display: flex;
+    flex-direction: row;
 }
 
 #status {

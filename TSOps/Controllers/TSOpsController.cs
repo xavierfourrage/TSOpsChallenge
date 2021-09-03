@@ -21,9 +21,8 @@ namespace TSOps.Controllers
         public ActionResult ReadDescription(TagModel tagn)
         {
             PIPointDataService pipoint = new PIPointDataService();
-            TagModel tag = new TagModel();
+           /* TagModel tag = new TagModel();*/
             
-
             if (tagn.tagname == null)
             {
                 ViewBag.Message0 = "Bad";
@@ -53,21 +52,24 @@ namespace TSOps.Controllers
                 tagname.UnloadAllAttributes(PICommonPointAttributes.Descriptor);
             }
 
-            return View("Index", tag);
+            return View("Index", tagn);
 
         }
 
         public ActionResult RenamePiPoint(TagModel tagn)
         {
             PIPointDataService pipoint = new PIPointDataService();
-            TagModel tag = new TagModel();
-            tag.newtagname = tagn.newtagname;
-
+           /* TagModel tag = new TagModel();
+            tag.newtagname = tagn.newtagname;*/
 
             if (tagn.newtagname == null || tagn.oldtagname == null)
             {
-                if(tagn.newtagname == null) { ViewBag.Message2 = "New tagname cannot be null"; }
-                else { ViewBag.Message2 = "Tagname cannot be null"; }
+                if(tagn.newtagname == null) 
+                {   ViewBag.Message2 = "Bad";
+                    ViewBag.Message3 = "New tagname cannot be null"; }
+                else {
+                    ViewBag.Message2 = "Bad";
+                    ViewBag.Message3 = "Tagname cannot be null"; }
             }
 
             else if (tagn.newtagname== tagn.oldtagname)
@@ -103,7 +105,7 @@ namespace TSOps.Controllers
 
             }
 
-            return View("Index", tag);
+            return View("Index", tagn);
         }
     }
 }
