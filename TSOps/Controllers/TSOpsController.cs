@@ -21,7 +21,6 @@ namespace TSOps.Controllers
         public ActionResult ReadDescription(TagModel tagn)
         {
             PIPointDataService pipoint = new PIPointDataService();
-           /* TagModel tag = new TagModel();*/
             
             if (tagn.tagname == null)
             {
@@ -59,8 +58,6 @@ namespace TSOps.Controllers
         public ActionResult RenamePiPoint(TagModel tagn)
         {
             PIPointDataService pipoint = new PIPointDataService();
-           /* TagModel tag = new TagModel();
-            tag.newtagname = tagn.newtagname;*/
 
             if (tagn.newtagname == null || tagn.oldtagname == null)
             {
@@ -78,7 +75,7 @@ namespace TSOps.Controllers
                 ViewBag.Message3 = "Name and NewName are equal";
             }
 
-            else if (!pipoint.CheckingConnectionToPI())
+            else if (!pipoint.CheckingConnectionToPI()) //checking connection to PI DA
             {
                 ViewBag.Message2 = "Bad";
                 ViewBag.Message2 = "Could not connect to your default PI DA";
@@ -90,7 +87,13 @@ namespace TSOps.Controllers
                 ViewBag.Message3 = tagn.oldtagname+" does not exist";
             }
 
-            else // if we are able to connect to Default PI DA
+            else if (pipoint.findPiPoint(tagn.newtagname) != null) 
+            {
+                ViewBag.Message2 = "Bad";
+                ViewBag.Message3 = tagn.newtagname + " already exists";
+            }
+
+            else // renaming PI Point
             {
                 PIPoint oldpipoint = pipoint.findPiPoint(tagn.oldtagname);
                 oldpipoint.LoadAttributes(PICommonPointAttributes.Tag);
