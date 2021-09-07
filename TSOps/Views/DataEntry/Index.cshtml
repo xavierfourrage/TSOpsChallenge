@@ -4,39 +4,32 @@
 
 @using (Html.BeginForm("GetTagInfo", "DataEntry", FormMethod.Post))
 {
-    <span>Enter an existing tagname: </span> @Html.TextBoxFor(m => m.tagname)
+    <span id="text">Enter an existing tagname: </span> @Html.TextBoxFor(m => m.tagname, new { @class = "defaultTextBox" })
 
-    <input id="Submit" type="submit" value="Select tag and Read Snapshot" />
-}
+    <div class="buttontemplate"><input id="Submit" type="submit" value="Select tag and Read Snapshot" /></div>
+        
+        }
 
-<p>@ViewBag.Message3</p>
+        <p id="text">@ViewBag.Message3</p>
 
-@using (Html.BeginForm("SendData", "DataEntry", FormMethod.Post))
-{
-    <span> Write a new snapshot for the specified tag: </span>@Html.TextBoxFor(m => m.snapshot)
+      @using (Html.BeginForm("SendData", "DataEntry", FormMethod.Post))
+        {
+            <span id="text"> Write a new snapshot for the specified tag: </span>@Html.TextBoxFor(m => m.snapshot, new { @class = "defaultTextBox" })
 
-    @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
-    <input id="Submit" type="submit" value="Send Value" />
-}
-<p>@ViewBag.Message2</p>
+            @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
+            <div class="buttontemplate"><input id="Submit" type="submit" value="Send Value" /></div>
+        }
+        <p id="text">@ViewBag.Message2</p>
 
 
 
-@using (Html.BeginForm("SendArchivedData", "DataEntry", FormMethod.Post))
-{
-    <span> Write a new past Value: </span>@Html.TextBoxFor(m => m.archivedvalue)
-    <span> at timestamp (PI time format): </span>@Html.TextBoxFor(m => m.timestamp)
+        @using (Html.BeginForm("SendArchivedData", "DataEntry", FormMethod.Post))
+        {
+            <span id="text"> Write a new past Value: </span>@Html.TextBoxFor(m => m.archivedvalue, new { @class = "defaultTextBox" })
+            <br />
+            <span id="text"> at timestamp (PI time format): </span>@Html.TextBoxFor(m => m.timestamp, new { @class = "defaultTextBox" })
 
-    @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
-    <input id="Submit" type="submit" value="Send Value" />
-}
-<p>@ViewBag.Message4</p>
-
-@*@using (Html.BeginForm("CreateNewTag", "DataEntry", FormMethod.Post))
-{
-    <span>Create a new tag. New tag name: </span> @Html.TextBoxFor(m => m.newtag)
-
-    <input id="Submit" type="submit" value="Create" />
-}
-
-<p>@ViewBag.Message</p>*@
+            @Html.HiddenFor(m => m.tagname) // passing the newtagname as a hidden parameter in the form
+            <div class="buttontemplate"><input id="Submit" type="submit" value="Send Value" /></div>
+        }
+        <p id="text">@ViewBag.Message4</p>

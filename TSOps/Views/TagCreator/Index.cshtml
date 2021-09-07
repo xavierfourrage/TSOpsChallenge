@@ -4,27 +4,27 @@
 
 @using (Html.BeginForm("CreateNewTag", "TagCreator", FormMethod.Post))
 {
-    <span>Enter a new tagname: </span> @Html.TextBoxFor(m => m.newtag)
+    <span id="text">Enter a new tagname: </span> @Html.TextBoxFor(m => m.newtagname)
     <input id="Submit" type="submit" value="Create" />
 }
 
-<p>@ViewBag.Message</p>
+<p id="text">@ViewBag.Message</p>
 <br />
 
 @using (Html.BeginForm("SendData", "TagCreator", FormMethod.Post))
 {
-    <span> Write a new snapshot value for this tag: </span>@Html.TextBoxFor(m => m.snapshot)
+    <span id="text"> Write a new snapshot value for this tag: </span>@Html.TextBoxFor(m => m.snapshot)
     
-    @Html.HiddenFor(m => m.newtag) // passing the newtagname as a hidden parameter in the form
+    @Html.HiddenFor(m => m.newtagname) // passing the newtagname as a hidden parameter in the form
     <input id="Submit" type="submit" value="Send Value" />
 }
-<p>@ViewBag.Message2</p>
+<p id="text">@ViewBag.Message2</p>
 
 
 @using (Html.BeginForm("GetTagInfo", "TagCreator", FormMethod.Post))
 {
     
-    @Html.HiddenFor(m => m.newtag) // passing the newtagname as a hidden parameter in the form
+    @Html.HiddenFor(m => m.newtagname) // passing the newtagname as a hidden parameter in the form
     <input id="Submit" type="submit" value="Read Snapshot" />
 }
-<p>@ViewBag.Message3</p>
+<p id="text">@ViewBag.Message3</p>
